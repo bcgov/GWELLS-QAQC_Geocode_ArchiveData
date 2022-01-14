@@ -3,7 +3,6 @@ library(readr)
 library(janitor)
 
 source("R/col_types_wells.R")
-source("R/col_types_wells.R")
 
 library(RPostgres)
 con1 <- DBI::dbConnect(
