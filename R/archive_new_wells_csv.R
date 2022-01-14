@@ -84,6 +84,25 @@ if(update_csv){
     write_csv(updated_wells_csv, "data/wells.csv")
   } else{message("No new wells to append.")}
   
+  
+  drilling_method_csv <-
+    read_csv("https://raw.githubusercontent.com/bcgov/GWELLS-QAQC_Geocode_ArchiveData/main/data/drilling_method.csv"
+    ) 
+  
+
+  new_drilling_method <- newest_drilling_method %>%
+    anti_join(drilling_method_csv %>% select(well_tag_number)) %>% 
+    mutate(date_added = as.Date(Sys.time() , tz = "America/Vancouver")) %>%
+    janitor::clean_names()
+  
+  if(nrow(new_drilling_method)> 0){
+    message("Appending  new_drilling_method:", nrow(new_drilling_method), " rows.", paste(new_drilling_method$well_tag_number, collapse = " "))
+    updated_drilling_method_csv <- bind_rows(drilling_method_csv, new_drilling_method)
+    
+    write_csv(updated_drilling_method_csv, "data/drilling_method.csv")
+    
+  } else{message("No new drilling method to append.")}
+  
 }
 
 
