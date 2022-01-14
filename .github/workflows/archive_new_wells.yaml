@@ -43,9 +43,13 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
+          git status  
           git commit -am 'data/wells.csv' || echo "No changes to commit"
+          git status
           git commit -am 'data/drilling_method.csv' || echo "No changes to commit"
+          git status  
           git push origin || echo "No changes to commit"
+          git status  
       - name: Session info
         run: |
           options(width = 100)
