@@ -8,7 +8,8 @@ source("R/col_types_wells.R")
 # this script has the type of all columns in the wells.csv
 source("R/col_types_wells.R")
 
-update_csv <- TRUE
+update_sql <- TRUE
+
 
 # actually we arent going to use the python download script here because we need to read the other csvs in the zip file.
 url <- "https://s3.ca-central-1.amazonaws.com/gwells-export/export/v2/gwells.zip"
@@ -28,42 +29,40 @@ newest_drilling_method <-  read_csv(
 
 
 
-if(update_csv){
-  wells_csv <-
-    read_csv("https://raw.githubusercontent.com/bcgov/GWELLS-QAQC_Geocode_ArchiveData/main/data/wells.csv",
-             col_types = col_types_wells_janitor
-    ) 
+if(update_sql) {
+  con1 <- DBI::dbConnect(
+    #RPostgreSQL::PostgreSQL(),
+    RPostgres::Postgres(),
+    dbname = Sys.getenv("BCGOV_DB"),
+    host = Sys.getenv("BCGOV_HOST"),
+    user = Sys.getenv("BCGOV_USR"),
+    password=Sys.getenv("BCGOV_PWD")
+  )
+  
+  wells_in_db <- dbGetQuery(con1, "select well_tag_number from wells") 
+  
   new_wells <- newest_wells_file %>%
-    anti_join(wells_csv %>% select(well_tag_number)) %>%
+    anti_join(wells_in_db) %>%
     mutate(date_added = as.Date(Sys.time() , tz = "America/Vancouver")) %>%
     janitor::clean_names()
   
   if(nrow(new_wells)> 0){
-    message("writing new csv with :", nrow(new_wells), " new rowsrows.", paste(new_wells$well_tag_number, collapse = " "))
-    updated_wells_csv <- bind_rows(wells_csv, new_wells)
+    message("Appending new wells:", nrow(new_wells), " rows.", paste(new_wells$well_tag_number, collapse = " "))
+    dbAppendTable(con1, "wells", new_wells)
     
-    write_csv(updated_wells_csv, "data/wells.csv")
   } else{message("No new wells to append.")}
   
-  
-  drilling_method_csv <-
-    read_csv("https://raw.githubusercontent.com/bcgov/GWELLS-QAQC_Geocode_ArchiveData/main/data/drilling_method.csv"
-    ) 
-  
+  wells_in_drilling_method_db <- dbGetQuery(con1, "select well_tag_number from drilling_method") 
   
   new_drilling_method <- newest_drilling_method %>%
-    anti_join(drilling_method_csv %>% select(well_tag_number)) %>% 
+    anti_join(wells_in_drilling_method_db) %>% 
     mutate(date_added = as.Date(Sys.time() , tz = "America/Vancouver")) %>%
     janitor::clean_names()
   
   if(nrow(new_drilling_method)> 0){
     message("Appending  new_drilling_method:", nrow(new_drilling_method), " rows.", paste(new_drilling_method$well_tag_number, collapse = " "))
-    updated_drilling_method_csv <- bind_rows(drilling_method_csv, new_drilling_method)
-    
-    write_csv(updated_drilling_method_csv, "data/drilling_method.csv")
+    dbAppendTable(con1, "drilling_method", new_drilling_method)
     
   } else{message("No new drilling method to append.")}
-  
-}
-
-
+  DBI::dbDisconnect(con1)
+} 

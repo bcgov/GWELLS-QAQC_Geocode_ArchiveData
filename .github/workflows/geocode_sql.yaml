@@ -2,9 +2,9 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - .github/workflows/geocode.yaml
-      - R/prep_geocode.R
-      - R/clean_after_geocode.R
+      - .github/workflows/geocode_sql.yaml
+      - R/prep_geocode_sql.R
+      - R/clean_after_geocode_sql.R
   schedule:
     - cron: "30 6 * * *"            
 jobs:
@@ -31,7 +31,7 @@ jobs:
           mkdir data  
       - name: prepare csvs for geocode input
         run: |
-          Rscript R/prep_geocode.R
+          Rscript R/prep_geocode_sql.R
       - name: ls *
         run: |
           ls * -lh
@@ -49,25 +49,16 @@ jobs:
           ls data/* -lh        
       - name: clean afer geocode
         run: |
-          Rscript R/clean_after_geocode.R          
+          Rscript R/clean_after_geocode_sql.R          
       - name: ls *
         run: |
           ls * -lh
       - name: ls *
         run: |
           ls data/* -lh                  
-      - name: Commit results
-        run: |
-          
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git status
-          git commit -m 'data/wells_geocoded.csv' || echo "No changes to commit"
-          git push origin || echo "No changes to commit"
-          git status
       - name: Session info
         run: |
-          options(width = 140)
+          options(width = 100)
           pkgs <- installed.packages()[, "Package"]
           sessioninfo::session_info(pkgs, include_base = TRUE)
-        shell: Rscript {0}          
+        shell: Rscript {0}
