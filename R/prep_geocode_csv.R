@@ -1,7 +1,7 @@
 library(dplyr)
 library(readr)
 library(janitor)
-library(RPostgres)
+library(RPostgres) 
 source("R/col_types_wells.R")
 
 update_csv <- TRUE   # do we update the data in the CSV in the repo?
