@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - .github/workflows/archive_new_wells.yaml
+      - .github/workflows/archive_new_wells_csv.yaml
       - R/archive_new_wells_csv.R
   schedule:
     - cron: "0 6 * * *"      

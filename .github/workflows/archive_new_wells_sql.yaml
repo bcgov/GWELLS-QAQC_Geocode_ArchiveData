@@ -2,8 +2,8 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - .github/workflows/archive_new_wells.yaml
-      - R/archive_new_wells.R
+      - .github/workflows/archive_new_wells_sql.yaml
+      - R/archive_new_wells_sql.R
   schedule:
     - cron: "0 6 * * *"      
 jobs:

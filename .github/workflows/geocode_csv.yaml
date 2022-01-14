@@ -2,9 +2,9 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - .github/workflows/geocode.yaml
-      - R/prep_geocode.R
-      - R/clean_after_geocode.R
+      - .github/workflows/geocode_csv.yaml
+      - R/prep_geocode_csv.R
+      - R/clean_after_geocode_csv.R
   schedule:
     - cron: "30 6 * * *"            
 jobs:
