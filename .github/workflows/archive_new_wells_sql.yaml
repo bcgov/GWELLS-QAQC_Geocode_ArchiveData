@@ -2,10 +2,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - .github/workflows/archive_new_wells_sql.yaml
-      - R/archive_new_wells_sql.R
   schedule:
-    - cron: "0 6 * * *"      
 jobs:
   job1:
     runs-on: ubuntu-latest
