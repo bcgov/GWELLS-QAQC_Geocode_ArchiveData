@@ -35,7 +35,7 @@ if(update_csv){
   
   # this is the list of wells that need geocoding
   to_geocode <- wells_in_db %>%
-    anti_join(wells_geocoded_in_db %>% head(-10)) %>%
+    anti_join(wells_geocoded_in_db) %>%
     filter(!is.na(latitude_decdeg), !is.na(longitude_decdeg)) %>% 
     tail(max_number_geocoded)
   
