@@ -2,11 +2,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - .github/workflows/geocode_sql.yaml
-      - R/prep_geocode_sql.R
-      - R/clean_after_geocode_sql.R
   schedule:
-    - cron: "30 6 * * *"            
 jobs:
   job1:
     runs-on: ubuntu-latest
