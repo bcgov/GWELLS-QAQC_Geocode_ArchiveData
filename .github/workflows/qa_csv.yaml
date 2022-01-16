@@ -60,9 +60,9 @@ jobs:
           
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add 'data/wells_qa.csv'          
-          git commit -m "automatic update"
-          git push origin
+          git add 'data/wells_qa.csv'          || echo "ECHO No changes to commit"
+          git commit -m "automatic update" || echo "ECHO No changes to commit"
+          git push origin || echo "ECHO No changes to commit"
           git status
           
       - name: Session info
