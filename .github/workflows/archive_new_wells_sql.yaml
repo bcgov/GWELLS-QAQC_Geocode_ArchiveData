@@ -2,7 +2,8 @@ on:
   workflow_dispatch:
   push:
     paths:
-  schedule:
+      - .github/workflows/archive_new_wells_sql.yaml    
+
 jobs:
   job1:
     runs-on: ubuntu-latest
