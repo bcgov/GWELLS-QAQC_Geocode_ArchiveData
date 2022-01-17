@@ -1,7 +1,7 @@
 on: 
   push:
     paths:
-  schedule:
+      - .github/workflows/qa_sql.yaml    
 jobs:
   job1:
     runs-on: ubuntu-latest
