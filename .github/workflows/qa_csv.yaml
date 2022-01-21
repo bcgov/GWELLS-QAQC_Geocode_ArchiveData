@@ -10,7 +10,7 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     container: 
-      image: morglum/monrstudio
+      image: lespelleteux/docker_for_gwells
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
