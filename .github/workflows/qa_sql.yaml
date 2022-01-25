@@ -1,11 +1,7 @@
 on: 
   push:
     paths:
-      - .github/workflows/qa_sql.yaml
-      - R/prep_qa_sql.R
-      - R/clean_after_qa_sql.R
-  schedule:
-    - cron: "0 7 * * *"            
+      - .github/workflows/qa_sql.yaml    
 jobs:
   job1:
     runs-on: ubuntu-latest
