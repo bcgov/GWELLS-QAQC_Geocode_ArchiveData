@@ -1,13 +1,13 @@
 # GWELLS-QAQC_Geocode_ArchiveData
 relates to GWELLS-QAQC-RShiny-Dashboard Github repo (https://github.com/bcgov/GWELLS-QAQC-RShiny-Dashboard)
 
-The purpose of the code in [this repo](https://github.com/SimonCoulombe/gwells_geocode_and_archive_data) is to maintain an archive of the [registered ground water wells data](https://apps.nrs.gov.bc.ca/gwells/) provided by the Government of British-Columbia in the `data/` folder.
+The purpose of the code in [this repo](https://github.com/bcgov/GWELLS-QAQC_Geocode_ArchiveData) is to maintain an archive of the [registered ground water wells data](https://apps.nrs.gov.bc.ca/gwells/) provided by the Government of British-Columbia in the `data/` folder.
 
 Three CSVs appear in the `data/` folder.  They are all updated on a daily basis:  
 
-* [`gwells_data_first_appearance.csv`](https://github.com/SimonCoulombe/gwells_geocode_and_archive_data/blob/main/data/gwells_data_first_appearance.csv)
-* [`wells_geocoded.csv`](https://github.com/SimonCoulombe/gwells_geocode_and_archive_data/blob/main/data/gwells_locationqa.csv)
-* [gwells_locationqa.csv](https://github.com/SimonCoulombe/gwells_geocode_and_archive_data/blob/main/data/wells_geocoded.csv)
+* [`gwells_data_first_appearance.csv`](https://github.com/bcgov/GWELLS-QAQC_Geocode_ArchiveData/blob/main/data/gwells_data_first_appearance.csv)
+* [`wells_geocoded.csv`](https://github.com/bcgov/GWELLS-QAQC_Geocode_ArchiveData/blob/main/data/gwells_locationqa.csv)
+* [gwells_locationqa.csv](https://github.com/bcgov/GWELLS-QAQC_Geocode_ArchiveData/blob/main/data/wells_geocoded.csv)
 
 `gwells_data_first_appearance.csv` keeps a record of each well *on the day they were added to the  `gwells` csv*.  We never update the information of a well, allowing us to go back in time and generate a record for any time period.  The wells are defined by their `well_tag_number`.  The columns are the same as for the gwells.csv, with the addition of the `date_added` column, which is the first date a `well_tag_number` was spotted by this script.
 
