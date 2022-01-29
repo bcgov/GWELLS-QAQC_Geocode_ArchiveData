@@ -27,4 +27,4 @@ Here is a diagram of the whole process:
 
 # Why CSV and not SQL?  
 
-We recognize that it  would have been better practice to save this data in an SQL table instead of a CSV inside a github repo.  We built the code for this purpose, which is why most files in this repository exist in two copies: one with a "_csv" suffix and another with the "_sql" suffix.  Due to cost issue, it was decided to use the CSV approach.  
+We recognize that it  would have been better practice to save this data in an SQL table instead of a CSV inside a github repo.  We built the code for this purpose, which is why most files in this repository exist in two copies: one with a "_csv" suffix and another with the "_sql" suffix.  Due to cost issue, it was decided to use the CSV approach.  The _sql code was kept in this repo in case this approach is retained in the future.  
