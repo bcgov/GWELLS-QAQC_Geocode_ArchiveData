@@ -11,11 +11,11 @@ Three CSVs appear in the `data/` folder.  They are all updated on a daily basis:
 
 `wells.csv` is an identical copy of the `gwells.csv` with an additional column: `date_added`.  This column represents the first date a well was spotted by this script.
 
-* `wells_geocoded.csv` is the result of passing the `wells.csv` through the `python gwells_locationqa geocode` script.    
+* `wells_geocoded.csv` is the result of passing the `wells.csv` through the `python gwells_locationqa geocode` python script from the [bcgov/GWELLS_LocationQA repo](https://github.com/bcgov/GWELLS_LocationQA).
 
-* `wells_qa.csv` is the result of passing  `wells.csv` and `wells_geocoded.csv` through the `python gwells_locationqa qa` script.   
+* `wells_qa.csv` is the result of passing  `wells.csv` and `wells_geocoded.csv` through the `python gwells_locationqa qa`  python script from the [bcgov/GWELLS_LocationQA repo](https://github.com/bcgov/GWELLS_LocationQA).
 
-The daily updates occur daily thanks to scheduled github actionthat depends on the [Docker Image created specifically for this project](https://github.com/bcgov/GWELLS-QAQC_Docker).  The image was tailored to include all the R, Python and spatial dependencies required to run the [Python scripts created by Simon Norris](https://github.com/bcgov/GWELLS_LocationQA) and build on the `rocker/geospatial:4.1.2` docker image. 
+The daily updates occur daily thanks to scheduled github actions at depends on the [Docker Image created specifically for this project](https://github.com/bcgov/GWELLS-QAQC_Docker).  The image was tailored to include all the R, Python and spatial dependencies required to run the [Python scripts created by Simon Norris](https://github.com/bcgov/GWELLS_LocationQA) and build on the `rocker/geospatial:4.1.2` docker image. 
 
 The three CSVs will then be used to feed the shiny app ([code](https://github.com/bcgov/GWELLS-QAQC-RShiny-Dashboard)) created for [this Code With Us project](https://digital.gov.bc.ca/marketplace/opportunities/code-with-us/3f77de24-a121-4143-a028-8d2f04067ba5). 
 
