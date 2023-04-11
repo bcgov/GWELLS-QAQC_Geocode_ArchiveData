@@ -1,4 +1,7 @@
 # GWELLS-QAQC_Geocode_ArchiveData
+
+[![Lifecycle:Stable](https://img.shields.io/badge/Lifecycle-Stable-97ca00)](<Redirect-URL>)
+
 relates to GWELLS-QAQC-RShiny-Dashboard Github repo (https://github.com/bcgov/GWELLS-QAQC-RShiny-Dashboard)
 
 The purpose of the code in [this repo](https://github.com/bcgov/GWELLS-QAQC_Geocode_ArchiveData) is to maintain 3 files derived from the the [gwells.csv]("https://s3.ca-central-1.amazonaws.com/gwells-export/export/v2/gwells.zip") file provided by the Government of British-Columbia.   
